@@ -16,13 +16,19 @@ function Palette(props) {
   }, []);
 
   const colorBoxes = props.palette.colors[level].map(color => {
+    console.log(color);
     return (
-      <ColorBox key={color.name} background={color.hex} name={color.name} />
+      <ColorBox key={color.name} background={color[format]} name={color.name} />
     );
   });
   return (
     <div className="Palette">
-      <Navbar level={level} onChange={onChange} handleChange={handleChange} />
+      <Navbar
+        format={format}
+        level={level}
+        onChange={onChange}
+        handleChange={handleChange}
+      />
       <div className="Palette-colors">{colorBoxes}</div>
     </div>
   );
