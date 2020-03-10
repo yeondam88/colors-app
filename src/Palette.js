@@ -4,7 +4,7 @@ import ColorBox from './ColorBox';
 
 import './Palette.css';
 
-function Palette(props) {
+function Palette({ palette: { colors, paletteName, emoji } }) {
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState('hex');
   const onChange = useCallback(newLevel => {
@@ -15,8 +15,7 @@ function Palette(props) {
     setFormat(format);
   }, []);
 
-  const colorBoxes = props.palette.colors[level].map(color => {
-    console.log(color);
+  const colorBoxes = colors[level].map(color => {
     return (
       <ColorBox key={color.name} background={color[format]} name={color.name} />
     );
@@ -30,6 +29,10 @@ function Palette(props) {
         handleChange={handleChange}
       />
       <div className="Palette-colors">{colorBoxes}</div>
+      <footer className="Palette-footer">
+        {paletteName}
+        <span className="emoji">{emoji}</span>
+      </footer>
     </div>
   );
 }
