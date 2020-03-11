@@ -4,6 +4,7 @@ import Palette from './Palette';
 import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import PaletteList from './PaletteList';
+import SingleColorPalette from './SingleColorPalette';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
       />
       <Route
         path="/palette/:paletteId/:colorId"
-        render={routeProps => <h1>signle color page</h1>}
+        render={routeProps => <SingleColorPalette />}
       />
     </Switch>
   );
