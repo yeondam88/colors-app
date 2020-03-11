@@ -23,6 +23,7 @@ function Palette({ palette: { colors, paletteName, emoji, id } }) {
         name={color.name}
         id={color.id}
         paletteId={id}
+        showLink
       />
     );
   });
