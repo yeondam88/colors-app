@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 
 function SingleColorPalette({ palette, colorId }) {
   const [shades] = useState(gatherShades(palette, colorId));
+  const [level, setLevel] = useState(500);
+  const [format, setFormat] = useState('hex');
+  const onChange = useCallback(newLevel => {
+    setLevel(newLevel);
+  }, []);
+
+  const handleChange = useCallback(format => {
+    setFormat(format);
+  }, []);
 
   const colorBoxes = shades.map(color => (
     <ColorBox
       key={color.name}
       name={color.name}
-      background={color.hex}
+      background={color[format]}
       showLink={false}
     />
   ));
   return (
     <div className="Palette">
-      <h1>Single Color Palette</h1>
+      <Navbar
+        format={format}
+        level={level}
+        onChange={onChange}
+        handleChange={handleChange}
+      />
+
       <div className="Palette-colors">{colorBoxes}</div>
     </div>
   );
