@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import Navbar from './Navbar';
+import React, { useCallback, useState } from 'react';
 import ColorBox from './ColorBox';
-
+import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
 import './Palette.css';
 
 function Palette({ palette: { colors, paletteName, emoji, id } }) {
@@ -34,12 +34,10 @@ function Palette({ palette: { colors, paletteName, emoji, id } }) {
         level={level}
         onChange={onChange}
         handleChange={handleChange}
+        showingAllColors
       />
       <div className="Palette-colors">{colorBoxes}</div>
-      <footer className="Palette-footer">
-        {paletteName}
-        <span className="emoji">{emoji}</span>
-      </footer>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 }

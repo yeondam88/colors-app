@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
+import PaletteFooter from './PaletteFooter';
 
 function SingleColorPalette({ palette, colorId }) {
   const [shades] = useState(gatherShades(palette, colorId));
@@ -25,6 +26,7 @@ function SingleColorPalette({ palette, colorId }) {
   return (
     <div className="Palette">
       <Navbar
+        showingAllColors={false}
         format={format}
         level={level}
         onChange={onChange}
@@ -32,6 +34,7 @@ function SingleColorPalette({ palette, colorId }) {
       />
 
       <div className="Palette-colors">{colorBoxes}</div>
+      <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </div>
   );
 }
