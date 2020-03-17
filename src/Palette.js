@@ -2,9 +2,19 @@ import React, { useCallback, useState } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
-import "./Palette.css";
+import { withStyles } from "@material-ui/styles";
 
-function Palette({ palette: { colors, paletteName, emoji, id } }) {
+const styles = {
+  Palette: {
+    height: "100vh"
+  },
+
+  PaletteColors: {
+    height: "90%"
+  }
+};
+
+function Palette({ palette: { colors, paletteName, emoji, id }, classes }) {
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");
   const onChange = useCallback(newLevel => {
@@ -28,7 +38,7 @@ function Palette({ palette: { colors, paletteName, emoji, id } }) {
     );
   });
   return (
-    <div className="Palette">
+    <div className={classes.Palette}>
       <Navbar
         format={format}
         level={level}
@@ -36,10 +46,14 @@ function Palette({ palette: { colors, paletteName, emoji, id } }) {
         handleChange={handleChange}
         showingAllColors
       />
-      <div className="Palette-colors">{colorBoxes}</div>
-      <PaletteFooter paletteName={paletteName} emoji={emoji} />
+      <div className={classes.PaletteColors}>{colorBoxes}</div>
+      <PaletteFooter
+        paletteName={paletteName}
+        emoji={emoji}
+        classes={classes}
+      />
     </div>
   );
 }
 
-export default Palette;
+export default withStyles(styles)(Palette);
