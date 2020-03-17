@@ -1,13 +1,13 @@
-import React, { useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
-import ColorBox from './ColorBox';
-import PaletteFooter from './PaletteFooter';
+import React, { useState, useCallback } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import ColorBox from "./ColorBox";
+import PaletteFooter from "./PaletteFooter";
 
 function SingleColorPalette({ palette, colorId }) {
   const [shades] = useState(gatherShades(palette, colorId));
   const [level, setLevel] = useState(500);
-  const [format, setFormat] = useState('hex');
+  const [format, setFormat] = useState("hex");
   const onChange = useCallback(newLevel => {
     setLevel(newLevel);
   }, []);
@@ -21,7 +21,7 @@ function SingleColorPalette({ palette, colorId }) {
       key={color.name}
       name={color.name}
       background={color[format]}
-      showLink={false}
+      showingFullPalette={false}
     />
   ));
   return (

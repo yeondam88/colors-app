@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from 'react';
-import ColorBox from './ColorBox';
-import Navbar from './Navbar';
-import PaletteFooter from './PaletteFooter';
-import './Palette.css';
+import React, { useCallback, useState } from "react";
+import ColorBox from "./ColorBox";
+import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
+import "./Palette.css";
 
 function Palette({ palette: { colors, paletteName, emoji, id } }) {
   const [level, setLevel] = useState(500);
-  const [format, setFormat] = useState('hex');
+  const [format, setFormat] = useState("hex");
   const onChange = useCallback(newLevel => {
     setLevel(newLevel);
   }, []);
@@ -23,7 +23,7 @@ function Palette({ palette: { colors, paletteName, emoji, id } }) {
         name={color.name}
         id={color.id}
         paletteId={id}
-        showLink
+        showingFullPalette
       />
     );
   });
