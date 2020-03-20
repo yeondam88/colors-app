@@ -1,16 +1,47 @@
-import React, { useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import React, { useState, useCallback } from "react";
+import { Link } from "react-router-dom";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import { withStyles } from "@material-ui/styles";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+import "./Navbar.css";
 
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import './Navbar.css';
+const styles = {
+  Navbar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    "height:": "6vh"
+  },
+  logo: {
+    marginRight: "15px",
+    padding: "0 13px",
+    fontSize: "22px",
+    backgroundColor: "#eceff1",
+    fontFamily: "Roboto",
+    height: "100%",
+    display: "flex",
+    alignItems: "center"
+  },
+  slider: {
+    width: "340px",
+    margin: "0 10px",
+    display: "inline-block"
+  }
+};
 
-function Navbar({ format, level, onChange, handleChange, showingAllColors }) {
+function Navbar({
+  format,
+  level,
+  onChange,
+  handleChange,
+  showingAllColors,
+  classes
+}) {
   const [open, setOpen] = useState(true);
   const handleFormatChange = useCallback(
     e => {
@@ -20,14 +51,14 @@ function Navbar({ format, level, onChange, handleChange, showingAllColors }) {
     [handleChange]
   );
   return (
-    <header className="Navbar">
-      <div className="logo">
+    <header className={classes.Navbar}>
+      <div className={classes.Logo}>
         <Link to="/">reactcolorpicker</Link>
       </div>
       {showingAllColors && (
         <div className="slider-container">
           <span>Level: {level}</span>
-          <div className="slider">
+          <div className={classes.Slider}>
             <Slider
               defaultValue={level}
               min={100}
@@ -46,14 +77,14 @@ function Navbar({ format, level, onChange, handleChange, showingAllColors }) {
         </Select>
       </div>
       <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={open}
         autoHideDuration={3000}
         message={
           <span id="message-id">Format changed to {format.toUpperCase()}</span>
         }
         ContentProps={{
-          'aria-describedby': 'message-id'
+          "aria-describedby": "message-id"
         }}
         onClose={() => setOpen(false)}
         action={[
@@ -71,4 +102,4 @@ function Navbar({ format, level, onChange, handleChange, showingAllColors }) {
   );
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);
