@@ -15,7 +15,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    "height:": "6vh"
+    height: "6vh"
   },
   logo: {
     marginRight: "15px",
@@ -52,13 +52,13 @@ function Navbar({
   );
   return (
     <header className={classes.Navbar}>
-      <div className={classes.Logo}>
+      <div className={classes.logo}>
         <Link to="/">reactcolorpicker</Link>
       </div>
       {showingAllColors && (
         <div className="slider-container">
           <span>Level: {level}</span>
-          <div className={classes.Slider}>
+          <div className={classes.slider}>
             <Slider
               defaultValue={level}
               min={100}
