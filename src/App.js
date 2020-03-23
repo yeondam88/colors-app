@@ -1,14 +1,16 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Palette from './Palette';
-import seedColors from './seedColors';
-import { generatePalette } from './colorHelpers';
-import PaletteList from './PaletteList';
-import SingleColorPalette from './SingleColorPalette';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Palette from "./Palette";
+import seedColors from "./seedColors";
+import { generatePalette } from "./colorHelpers";
+import PaletteList from "./PaletteList";
+import SingleColorPalette from "./SingleColorPalette";
+import NewPaletteForm from "./NewPaletteForm";
 
 function App() {
   return (
     <Switch>
+      <Route path="/palette/new" exact render={() => <NewPaletteForm />} />
       <Route
         exact
         path="/"

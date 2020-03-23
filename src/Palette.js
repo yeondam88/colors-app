@@ -3,19 +3,7 @@ import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import { withStyles } from "@material-ui/styles";
-//import styles from './styles/PaletteStyles';
-
-import "./Navbar.css";
-
-const styles = {
-  Palette: {
-    height: "100vh"
-  },
-
-  PaletteColors: {
-    height: "90%"
-  }
-};
+import styles from "./styles/PaletteStyles";
 
 function Palette({ palette: { colors, paletteName, emoji, id }, classes }) {
   const [level, setLevel] = useState(500);
