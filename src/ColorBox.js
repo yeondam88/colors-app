@@ -1,17 +1,11 @@
 import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "./styles/ColorBoxStyles";
 
-function ColorBox({
-  background,
-  name,
-  paletteId,
-  id,
-  classes,
-  showingFullPalette
-}) {
+function ColorBox({ background, name, paletteId, id, showingFullPalette }) {
+  const classes = makeStyles(styles)();
   const [copied, setCopied] = useState(false);
 
   const copyHandler = useCallback(() => {
@@ -51,4 +45,4 @@ function ColorBox({
   );
 }
 
-export default withStyles(styles)(ColorBox);
+export default ColorBox;

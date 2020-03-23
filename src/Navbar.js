@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -11,14 +11,8 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styles from "./styles/NavbarStyles";
 
-function Navbar({
-  format,
-  level,
-  onChange,
-  handleChange,
-  showingAllColors,
-  classes
-}) {
+function Navbar({ format, level, onChange, handleChange, showingAllColors }) {
+  const classes = makeStyles(styles)();
   const [open, setOpen] = useState(true);
   const handleFormatChange = useCallback(
     e => {
@@ -46,7 +40,7 @@ function Navbar({
           </div>
         </div>
       )}
-      <div className="select-container">
+      <div className={classes.selectContainer}>
         <Select value={format} onChange={handleFormatChange}>
           <MenuItem value="hex">Hex - #ffffff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
@@ -79,4 +73,4 @@ function Navbar({
   );
 }
 
-export default withStyles(styles)(Navbar);
+export default Navbar;

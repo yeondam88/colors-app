@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import ColorBox from "./ColorBox";
 import PaletteFooter from "./PaletteFooter";
-import { withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "./styles/PaletteStyles";
 
-function SingleColorPalette({ palette, colorId, classes }) {
+function SingleColorPalette({ palette, colorId }) {
+  const classes = makeStyles(styles)();
   const [shades] = useState(gatherShades(palette, colorId));
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");
@@ -60,4 +61,4 @@ function gatherShades(palette, colorToFilterBy) {
   return _shades.slice(1);
 }
 
-export default withStyles(styles)(SingleColorPalette);
+export default SingleColorPalette;

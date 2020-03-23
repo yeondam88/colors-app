@@ -38,10 +38,10 @@ export default {
     },
     "& .rc-slider-track": {
       backgroundColor: "transparent"
-    },
-    "& .select-container": {
-      marginLeft: "auto",
-      marginRight: "1rem"
     }
+  },
+  selectContainer: {
+    marginLeft: "auto",
+    marginRight: "1rem"
   }
 };

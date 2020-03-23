@@ -2,10 +2,11 @@ import React, { useCallback, useState } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
-import { withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "./styles/PaletteStyles";
 
-function Palette({ palette: { colors, paletteName, emoji, id }, classes }) {
+function Palette({ palette: { colors, paletteName, emoji, id } }) {
+  const classes = makeStyles(styles)();
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");
   const onChange = useCallback(newLevel => {
@@ -47,4 +48,4 @@ function Palette({ palette: { colors, paletteName, emoji, id }, classes }) {
   );
 }
 
-export default withStyles(styles)(Palette);
+export default Palette;

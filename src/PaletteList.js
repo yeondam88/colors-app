@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
-import { withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import styles from "./styles/PaletteListStyles";
 
-function PaletteList({ palettes, classes, ...routeProps }) {
+function PaletteList({ palettes, ...routeProps }) {
+  const classes = makeStyles(styles)();
   function handleClick(id) {
     routeProps.history.push(`/palette/${id}`);
   }
@@ -34,4 +35,4 @@ function PaletteList({ palettes, classes, ...routeProps }) {
   );
 }
 
-export default withStyles(styles)(PaletteList);
+export default PaletteList;
