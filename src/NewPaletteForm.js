@@ -13,6 +13,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { ChromePicker } from "react-color";
 import { Button } from "@material-ui/core";
 import DraggableColorBox from "./DraggableColorBox";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const drawerWidth = 400;
 
@@ -77,7 +78,8 @@ function NewPaletteForm() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("teal");
-  const [colors, setColors] = useState(["purple", "red"]);
+  const [colors, setColors] = useState([]);
+  const [newName, setNewName] = useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -92,9 +94,17 @@ function NewPaletteForm() {
   };
 
   const addNewColor = () => {
+    const newColor = {
+      color: currentColor,
+      name: newName
+    };
     setColors(prevColor => {
-      return [...prevColor, currentColor];
+      return [...prevColor, newColor];
     });
+  };
+
+  const handleChange = e => {
+    setNewName(e.target.value);
   };
 
   return (
@@ -149,14 +159,17 @@ function NewPaletteForm() {
           color={currentColor}
           onChangeComplete={updateCurrentColor}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ backgroundColor: currentColor }}
-          onClick={addNewColor}
-        >
-          Add Color
-        </Button>
+        <ValidatorForm onSubmit={addNewColor}>
+          <TextValidator value={newName} onChange={handleChange} />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{ backgroundColor: currentColor }}
+          >
+            Add Color
+          </Button>
+        </ValidatorForm>
       </Drawer>
       <main
         className={clsx(classes.content, {
