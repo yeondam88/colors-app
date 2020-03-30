@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -101,11 +101,24 @@ function NewPaletteForm() {
     setColors(prevColor => {
       return [...prevColor, newColor];
     });
+    setNewName("");
   };
 
   const handleChange = e => {
     setNewName(e.target.value);
   };
+
+  useEffect(() => {
+    ValidatorForm.addValidationRule("isColorNameUnique", value => {
+      return colors.every(
+        ({ name }) => name.toLowerCase() !== value.toLowerCase()
+      );
+    });
+
+    ValidatorForm.addValidationRule("isColorUnique", value => {
+      return colors.every(({ color }) => color !== currentColor);
+    });
+  }, [colors, currentColor]);
 
   return (
     <div className={classes.root}>
@@ -160,7 +173,16 @@ function NewPaletteForm() {
           onChangeComplete={updateCurrentColor}
         />
         <ValidatorForm onSubmit={addNewColor}>
-          <TextValidator value={newName} onChange={handleChange} />
+          <TextValidator
+            value={newName}
+            onChange={handleChange}
+            validators={["required", "isColorNameUnique", "isColorUnique"]}
+            errorMessages={[
+              "This field is required",
+              "Color name you entered is already exists",
+              "Color is already used"
+            ]}
+          />
           <Button
             type="submit"
             variant="contained"
